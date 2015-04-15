@@ -8,6 +8,22 @@
 
 #import "MainTBC.h"
 
+@interface MainTBC ()
+
+@end
+
 @implementation MainTBC
+
+- (void)viewDidLoad {
+    NSLog(@"%%MainTBC-I-TRACE, -viewDidLoad called.");
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+}
+
+- (void)didReceiveMemoryWarning {
+    NSLog(@"%%MainTBC-I-TRACE, -didReceiveMemoryWarning called.");
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 @end

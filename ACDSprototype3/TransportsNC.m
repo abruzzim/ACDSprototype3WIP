@@ -8,6 +8,10 @@
 
 #import "TransportsNC.h"
 
+@interface TransportsNC ()
+
+@end
+
 @implementation TransportsNC
 
 - (void)viewDidLoad {
