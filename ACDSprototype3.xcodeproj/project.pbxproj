@@ -22,6 +22,8 @@
 		5A1F7AC81ADF0D0000DE9885 /* VitalsParentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F7AC71ADF0D0000DE9885 /* VitalsParentVC.m */; };
 		5A1F7ACB1ADF105B00DE9885 /* FormularyNC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F7ACA1ADF105B00DE9885 /* FormularyNC.m */; };
 		5A1F7ACE1ADF108700DE9885 /* FormularyParentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F7ACD1ADF108700DE9885 /* FormularyParentVC.m */; };
+		5A1F7AD11ADF13C500DE9885 /* VideoNC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F7AD01ADF13C500DE9885 /* VideoNC.m */; };
+		5A1F7AD41ADF13FE00DE9885 /* VideoParentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F7AD31ADF13FE00DE9885 /* VideoParentVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,10 @@
 		5A1F7ACA1ADF105B00DE9885 /* FormularyNC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormularyNC.m; sourceTree = "<group>"; };
 		5A1F7ACC1ADF108700DE9885 /* FormularyParentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormularyParentVC.h; sourceTree = "<group>"; };
 		5A1F7ACD1ADF108700DE9885 /* FormularyParentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormularyParentVC.m; sourceTree = "<group>"; };
+		5A1F7ACF1ADF13C500DE9885 /* VideoNC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoNC.h; sourceTree = "<group>"; };
+		5A1F7AD01ADF13C500DE9885 /* VideoNC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoNC.m; sourceTree = "<group>"; };
+		5A1F7AD21ADF13FE00DE9885 /* VideoParentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoParentVC.h; sourceTree = "<group>"; };
+		5A1F7AD31ADF13FE00DE9885 /* VideoParentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoParentVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +121,8 @@
 				5A1F7ABE1ADEE9D900DE9885 /* GuidelinesNC.m */,
 				5A1F7AC31ADF0CD100DE9885 /* VitalsNC.h */,
 				5A1F7AC41ADF0CD100DE9885 /* VitalsNC.m */,
+				5A1F7ACF1ADF13C500DE9885 /* VideoNC.h */,
+				5A1F7AD01ADF13C500DE9885 /* VideoNC.m */,
 				5A1F7AC91ADF105B00DE9885 /* FormularyNC.h */,
 				5A1F7ACA1ADF105B00DE9885 /* FormularyNC.m */,
 				5A1F7ABA1ADEE4D100DE9885 /* TransportsParentVC.h */,
@@ -123,6 +131,8 @@
 				5A1F7AC11ADEEE1F00DE9885 /* GuidelinesParentVC.m */,
 				5A1F7AC61ADF0D0000DE9885 /* VitalsParentVC.h */,
 				5A1F7AC71ADF0D0000DE9885 /* VitalsParentVC.m */,
+				5A1F7AD21ADF13FE00DE9885 /* VideoParentVC.h */,
+				5A1F7AD31ADF13FE00DE9885 /* VideoParentVC.m */,
 				5A1F7ACC1ADF108700DE9885 /* FormularyParentVC.h */,
 				5A1F7ACD1ADF108700DE9885 /* FormularyParentVC.m */,
 				5A1F7A951ADEDAF800DE9885 /* Main.storyboard */,
@@ -260,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A1F7A911ADEDAF800DE9885 /* AppDelegate.m in Sources */,
+				5A1F7AD41ADF13FE00DE9885 /* VideoParentVC.m in Sources */,
 				5A1F7AC51ADF0CD100DE9885 /* VitalsNC.m in Sources */,
 				5A1F7ABF1ADEE9D900DE9885 /* GuidelinesNC.m in Sources */,
 				5A1F7AC81ADF0D0000DE9885 /* VitalsParentVC.m in Sources */,
@@ -267,6 +278,7 @@
 				5A1F7AB31ADEDE3700DE9885 /* MainTBC.m in Sources */,
 				5A1F7AC21ADEEE1F00DE9885 /* GuidelinesParentVC.m in Sources */,
 				5A1F7ABC1ADEE4D100DE9885 /* TransportsParentVC.m in Sources */,
+				5A1F7AD11ADF13C500DE9885 /* VideoNC.m in Sources */,
 				5A1F7AB91ADEE1FF00DE9885 /* TransportsNC.m in Sources */,
 				5A1F7A8E1ADEDAF800DE9885 /* main.m in Sources */,
 				5A1F7ACE1ADF108700DE9885 /* FormularyParentVC.m in Sources */,

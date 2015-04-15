@@ -20,7 +20,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor lightGrayColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationItem.title = @"Formulary";
+    self.navigationItem.title = @"Formulary Information";
     
     // Child 1 VC. -------------------------------------------------------------------------------------|
     //

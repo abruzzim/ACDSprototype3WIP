@@ -19,11 +19,12 @@
                         <segue destination="zAK-wL-HBA" kind="relationship" relationship="viewControllers" id="QQU-zi-riA"/>
                         <segue destination="nNZ-LF-R02" kind="relationship" relationship="viewControllers" id="AWa-VG-ErF"/>
                         <segue destination="Eki-Gu-yXK" kind="relationship" relationship="viewControllers" id="gFJ-Zs-ol8"/>
+                        <segue destination="fyA-Cs-6Rh" kind="relationship" relationship="viewControllers" id="8GT-lm-CeQ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="35Q-mS-0T6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="254" y="1172"/>
+            <point key="canvasLocation" x="86" y="2202"/>
         </scene>
         <!--TransportsNC-->
         <scene sceneID="BQD-4P-Pi7">
@@ -152,6 +153,42 @@
             </objects>
             <point key="canvasLocation" x="1737" y="1858"/>
         </scene>
+        <!--Video ParentVC-->
+        <scene sceneID="vIH-sq-WQP">
+            <objects>
+                <viewController id="U8h-8N-ISZ" customClass="VideoParentVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="g3Y-tl-nCQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="69p-XP-7zY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="193-Fz-Tx8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gGE-8q-9rt"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vEY-VN-H3Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1737" y="2554"/>
+        </scene>
+        <!--VideoNC-->
+        <scene sceneID="rwb-1I-2si">
+            <objects>
+                <navigationController title="VideoNC" id="fyA-Cs-6Rh" customClass="VideoNC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Video" image="professional8" id="NxB-tf-OvO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9Ah-2g-uxj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="U8h-8N-ISZ" kind="relationship" relationship="rootViewController" id="tPu-zY-zbu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ad6-u2-tYq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1041" y="2554"/>
+        </scene>
         <!--FormularyNC-->
         <scene sceneID="Cun-Oe-Noc">
             <objects>
@@ -175,5 +212,6 @@
         <image name="medical50" width="32" height="32"/>
         <image name="medical52" width="32" height="32"/>
         <image name="pill" width="32" height="32"/>
+        <image name="professional8" width="32" height="24"/>
     </resources>
 </document>

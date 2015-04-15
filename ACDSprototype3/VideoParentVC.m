@@ -1,26 +1,26 @@
 //
-//  VitalsParentVC.m
+//  VideoParentVC.m
 //  ACDSprototype3
 //
 //  Created by dev1 on 4/15/15.
 //  Copyright (c) 2015 dev1. All rights reserved.
 //
 
-#import "VitalsParentVC.h"
+#import "VideoParentVC.h"
 
-@interface VitalsParentVC ()
+@interface VideoParentVC ()
 
 @end
 
-@implementation VitalsParentVC
+@implementation VideoParentVC
 
 - (void)viewDidLoad {
-    NSLog(@"%%VitalsParentVC-I-TRACE, -viewDidLoad called.");
+    NSLog(@"%%VideoParentVC-I-TRACE, -viewDidLoad called.");
     
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor lightGrayColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationItem.title = @"Vital Signs";
+    self.navigationItem.title = @"Video Conference";
     
     // Child 1 VC. -------------------------------------------------------------------------------------|
     //

@@ -20,7 +20,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor lightGrayColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationItem.title = @"Guidelines";
+    self.navigationItem.title = @"Treatment Guidelines";
     
     // Child 1 VC. -------------------------------------------------------------------------------------|
     //
