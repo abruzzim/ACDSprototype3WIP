@@ -15,6 +15,7 @@
 		5A1F7AA81ADEDAF800DE9885 /* ACDSprototype3Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F7AA71ADEDAF800DE9885 /* ACDSprototype3Tests.m */; };
 		5A1F7AB31ADEDE3700DE9885 /* MainTBC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F7AB21ADEDE3700DE9885 /* MainTBC.m */; };
 		5A1F7AB91ADEE1FF00DE9885 /* TransportsNC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F7AB81ADEE1FF00DE9885 /* TransportsNC.m */; };
+		5A1F7ABC1ADEE4D100DE9885 /* TransportsParentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F7ABB1ADEE4D100DE9885 /* TransportsParentVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		5A1F7AB21ADEDE3700DE9885 /* MainTBC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTBC.m; sourceTree = "<group>"; };
 		5A1F7AB71ADEE1FF00DE9885 /* TransportsNC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransportsNC.h; sourceTree = "<group>"; };
 		5A1F7AB81ADEE1FF00DE9885 /* TransportsNC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransportsNC.m; sourceTree = "<group>"; };
+		5A1F7ABA1ADEE4D100DE9885 /* TransportsParentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransportsParentVC.h; sourceTree = "<group>"; };
+		5A1F7ABB1ADEE4D100DE9885 /* TransportsParentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransportsParentVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,8 @@
 				5A1F7AB21ADEDE3700DE9885 /* MainTBC.m */,
 				5A1F7AB71ADEE1FF00DE9885 /* TransportsNC.h */,
 				5A1F7AB81ADEE1FF00DE9885 /* TransportsNC.m */,
+				5A1F7ABA1ADEE4D100DE9885 /* TransportsParentVC.h */,
+				5A1F7ABB1ADEE4D100DE9885 /* TransportsParentVC.m */,
 				5A1F7A951ADEDAF800DE9885 /* Main.storyboard */,
 				5A1F7A981ADEDAF800DE9885 /* Images.xcassets */,
 				5A1F7A9A1ADEDAF800DE9885 /* LaunchScreen.xib */,
@@ -226,6 +231,7 @@
 			files = (
 				5A1F7A911ADEDAF800DE9885 /* AppDelegate.m in Sources */,
 				5A1F7AB31ADEDE3700DE9885 /* MainTBC.m in Sources */,
+				5A1F7ABC1ADEE4D100DE9885 /* TransportsParentVC.m in Sources */,
 				5A1F7AB91ADEE1FF00DE9885 /* TransportsNC.m in Sources */,
 				5A1F7A8E1ADEDAF800DE9885 /* main.m in Sources */,
 			);
