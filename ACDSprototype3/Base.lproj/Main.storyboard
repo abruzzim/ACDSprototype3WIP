@@ -14,10 +14,27 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
+                    <connections>
+                        <segue destination="tFD-Oe-b28" kind="relationship" relationship="viewControllers" id="Cuf-cj-XCB"/>
+                    </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="35Q-mS-0T6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="928" y="458"/>
+            <point key="canvasLocation" x="306" y="458"/>
+        </scene>
+        <!--TransportsNC-->
+        <scene sceneID="BQD-4P-Pi7">
+            <objects>
+                <navigationController title="TransportsNC" id="tFD-Oe-b28" customClass="TransportsNC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="e6Z-MJ-nhk"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vr3-4V-7j3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bfo-Ve-5xt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="983" y="458"/>
         </scene>
     </scenes>
 </document>
