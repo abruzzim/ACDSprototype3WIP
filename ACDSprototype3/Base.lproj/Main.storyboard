@@ -16,6 +16,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="tFD-Oe-b28" kind="relationship" relationship="viewControllers" id="Cuf-cj-XCB"/>
+                        <segue destination="zAK-wL-HBA" kind="relationship" relationship="viewControllers" id="QQU-zi-riA"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="35Q-mS-0T6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -26,7 +27,7 @@
         <scene sceneID="BQD-4P-Pi7">
             <objects>
                 <navigationController title="TransportsNC" id="tFD-Oe-b28" customClass="TransportsNC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="e6Z-MJ-nhk"/>
+                    <tabBarItem key="tabBarItem" title="Transports" image="medical52" id="e6Z-MJ-nhk"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vr3-4V-7j3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -37,7 +38,24 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfo-Ve-5xt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="983" y="458"/>
+            <point key="canvasLocation" x="1071" y="114"/>
+        </scene>
+        <!--GuidelinesNC-->
+        <scene sceneID="blB-pv-R5d">
+            <objects>
+                <navigationController title="GuidelinesNC" id="zAK-wL-HBA" customClass="GuidelinesNC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Guidelines" image="medical50" id="jBY-A8-unw"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IPy-TK-ECn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="glV-zB-S69" kind="relationship" relationship="rootViewController" id="Yc9-6n-CRI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KkH-0m-hC0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1071" y="792"/>
         </scene>
         <!--Transports ParentVC-->
         <scene sceneID="2QX-OJ-tvG">
@@ -56,7 +74,30 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9DE-N9-AZy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1659" y="458"/>
+            <point key="canvasLocation" x="1761" y="114"/>
+        </scene>
+        <!--Guidelines ParentVC-->
+        <scene sceneID="PP9-1f-iNI">
+            <objects>
+                <viewController id="glV-zB-S69" customClass="GuidelinesParentVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2iB-wD-DR1"/>
+                        <viewControllerLayoutGuide type="bottom" id="qqt-Sc-0Wy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1Gv-j4-BHX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="kRq-Z7-OBt"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qvi-aX-fw2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1761" y="792"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="medical50" width="32" height="32"/>
+        <image name="medical52" width="32" height="32"/>
+    </resources>
 </document>
