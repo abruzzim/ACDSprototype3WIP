@@ -16,6 +16,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NSLog(@"%%AppDelegate-I-TRACE, -application:didFinishLaunchingWithOptions: called.");
     // Override point for customization after application launch.
     return YES;
 }
