@@ -24,6 +24,11 @@
 		5A1F7ACE1ADF108700DE9885 /* FormularyParentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F7ACD1ADF108700DE9885 /* FormularyParentVC.m */; };
 		5A1F7AD11ADF13C500DE9885 /* VideoNC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F7AD01ADF13C500DE9885 /* VideoNC.m */; };
 		5A1F7AD41ADF13FE00DE9885 /* VideoParentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F7AD31ADF13FE00DE9885 /* VideoParentVC.m */; };
+		5A1F7AD71ADF188D00DE9885 /* Transports.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F7AD61ADF188D00DE9885 /* Transports.m */; };
+		5A1F7ADA1ADF198A00DE9885 /* Transport.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F7AD91ADF198A00DE9885 /* Transport.m */; };
+		5A1F7ADD1ADF1A8B00DE9885 /* TransportsMasterTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F7ADC1ADF1A8B00DE9885 /* TransportsMasterTVC.m */; };
+		5A1F7AE01ADF1AD700DE9885 /* TransportDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F7ADF1ADF1AD700DE9885 /* TransportDetailTVC.m */; };
+		5A1F7B181ADFF9A100DE9885 /* Details.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F7B171ADFF9A100DE9885 /* Details.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +75,16 @@
 		5A1F7AD01ADF13C500DE9885 /* VideoNC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoNC.m; sourceTree = "<group>"; };
 		5A1F7AD21ADF13FE00DE9885 /* VideoParentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoParentVC.h; sourceTree = "<group>"; };
 		5A1F7AD31ADF13FE00DE9885 /* VideoParentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoParentVC.m; sourceTree = "<group>"; };
+		5A1F7AD51ADF188D00DE9885 /* Transports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transports.h; sourceTree = "<group>"; };
+		5A1F7AD61ADF188D00DE9885 /* Transports.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transports.m; sourceTree = "<group>"; };
+		5A1F7AD81ADF198A00DE9885 /* Transport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transport.h; sourceTree = "<group>"; };
+		5A1F7AD91ADF198A00DE9885 /* Transport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transport.m; sourceTree = "<group>"; };
+		5A1F7ADB1ADF1A8B00DE9885 /* TransportsMasterTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransportsMasterTVC.h; sourceTree = "<group>"; };
+		5A1F7ADC1ADF1A8B00DE9885 /* TransportsMasterTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransportsMasterTVC.m; sourceTree = "<group>"; };
+		5A1F7ADE1ADF1AD700DE9885 /* TransportDetailTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransportDetailTVC.h; sourceTree = "<group>"; };
+		5A1F7ADF1ADF1AD700DE9885 /* TransportDetailTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransportDetailTVC.m; sourceTree = "<group>"; };
+		5A1F7B161ADFF9A100DE9885 /* Details.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Details.h; sourceTree = "<group>"; };
+		5A1F7B171ADFF9A100DE9885 /* Details.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Details.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +142,16 @@
 				5A1F7ACA1ADF105B00DE9885 /* FormularyNC.m */,
 				5A1F7ABA1ADEE4D100DE9885 /* TransportsParentVC.h */,
 				5A1F7ABB1ADEE4D100DE9885 /* TransportsParentVC.m */,
+				5A1F7ADB1ADF1A8B00DE9885 /* TransportsMasterTVC.h */,
+				5A1F7ADC1ADF1A8B00DE9885 /* TransportsMasterTVC.m */,
+				5A1F7ADE1ADF1AD700DE9885 /* TransportDetailTVC.h */,
+				5A1F7ADF1ADF1AD700DE9885 /* TransportDetailTVC.m */,
+				5A1F7AD51ADF188D00DE9885 /* Transports.h */,
+				5A1F7AD61ADF188D00DE9885 /* Transports.m */,
+				5A1F7B161ADFF9A100DE9885 /* Details.h */,
+				5A1F7B171ADFF9A100DE9885 /* Details.m */,
+				5A1F7AD81ADF198A00DE9885 /* Transport.h */,
+				5A1F7AD91ADF198A00DE9885 /* Transport.m */,
 				5A1F7AC01ADEEE1F00DE9885 /* GuidelinesParentVC.h */,
 				5A1F7AC11ADEEE1F00DE9885 /* GuidelinesParentVC.m */,
 				5A1F7AC61ADF0D0000DE9885 /* VitalsParentVC.h */,
@@ -278,8 +303,13 @@
 				5A1F7AB31ADEDE3700DE9885 /* MainTBC.m in Sources */,
 				5A1F7AC21ADEEE1F00DE9885 /* GuidelinesParentVC.m in Sources */,
 				5A1F7ABC1ADEE4D100DE9885 /* TransportsParentVC.m in Sources */,
+				5A1F7ADD1ADF1A8B00DE9885 /* TransportsMasterTVC.m in Sources */,
+				5A1F7ADA1ADF198A00DE9885 /* Transport.m in Sources */,
+				5A1F7AD71ADF188D00DE9885 /* Transports.m in Sources */,
 				5A1F7AD11ADF13C500DE9885 /* VideoNC.m in Sources */,
 				5A1F7AB91ADEE1FF00DE9885 /* TransportsNC.m in Sources */,
+				5A1F7B181ADFF9A100DE9885 /* Details.m in Sources */,
+				5A1F7AE01ADF1AD700DE9885 /* TransportDetailTVC.m in Sources */,
 				5A1F7A8E1ADEDAF800DE9885 /* main.m in Sources */,
 				5A1F7ACE1ADF108700DE9885 /* FormularyParentVC.m in Sources */,
 			);
@@ -478,6 +508,7 @@
 				5A1F7AAD1ADEDAF800DE9885 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5A1F7AAE1ADEDAF800DE9885 /* Build configuration list for PBXNativeTarget "ACDSprototype3Tests" */ = {
 			isa = XCConfigurationList;
@@ -486,6 +517,7 @@
 				5A1F7AB01ADEDAF800DE9885 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
