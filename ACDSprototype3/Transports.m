@@ -11,7 +11,6 @@
 @implementation Transports
 
 + (NSArray *)knownFakeTransports {
-    
     NSLog(@"%%TransportsMasterTVC-I-TRACE, +knownFakeTransports called.");
     
     NSDictionary *fakeTransport1 = [NSDictionary dictionaryWithObjectsAndKeys:
