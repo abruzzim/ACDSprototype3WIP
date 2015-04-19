@@ -40,8 +40,10 @@
     NSLog(@"%%GuidelineParentVC-I-TRACE, -viewDidLoad called.");
     
     [super viewDidLoad];
-    // Parent VC Attributes.
-    //
+    
+    /**
+     *  Parent VC Attributes.
+     */
     self.view.backgroundColor = [UIColor lightGrayColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.title = [self.guidelineDict[@"title"] stringByAppendingString:@" Protocol"];
@@ -50,8 +52,9 @@
     [self getTopOffset];
     [self getUnusableDimensions];
     
-    // Center VC. (UIViewController - Flowchart)------------------------------------------------------------|
-    //
+    /**
+     *  Center VC. (UIViewController - Flowchart)------------------------------------------------------------|
+     */
     self.flowchartVC = [[GuidelineFlowchartVC alloc] init];
     self.flowchartVC.view.frame =
         CGRectMake(
@@ -61,8 +64,10 @@
                    roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD1_HEIGHT_FACTOR)
                    );
     self.flowchartVC.view.backgroundColor = [UIColor cyanColor];
-    self.flowchartVC.scrollView = [[UIScrollView alloc] init];
-    self.flowchartVC.scrollView.frame = self.view.bounds;
+    //
+    // Instantiate scroll view.
+    //
+    self.flowchartVC.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     self.flowchartVC.scrollView.autoresizingMask = (UIViewAutoresizingFlexibleHeight);
     CGSize baseScrollViewContentSize;
     CGSize adjScrollViewContentSize;
@@ -73,17 +78,48 @@
                    baseScrollViewContentSize.height + (_totalUnusableHeight)
                    );
     self.flowchartVC.scrollView.contentSize = adjScrollViewContentSize;
+    //
+    // Instantiate image view.
+    //
     self.flowchartVC.image = [[UIImageView alloc] initWithFrame:[self.guidelineDict[@"frame"] CGRectValue]];
     [self.flowchartVC.image setImage:[UIImage imageNamed:self.guidelineDict[@"filename"]]];
+    self.flowchartVC.image.center = [self.flowchartVC.scrollView convertPoint:self.flowchartVC.scrollView.center
+                                                                     fromView:self.flowchartVC.scrollView.superview];
+    //
+    // Add image view to scroll view.
+    //
     [self.flowchartVC.scrollView addSubview:self.flowchartVC.image];
+    //
+    // Add constraint for image inside scroll view.
+    //
+    self.flowchartVC.image.translatesAutoresizingMaskIntoConstraints = NO;
+    NSLayoutConstraint *imageConstraint = [NSLayoutConstraint
+                                           constraintWithItem:self.flowchartVC.image
+                                           attribute:NSLayoutAttributeCenterX
+                                           relatedBy:NSLayoutRelationEqual
+                                           toItem:self.flowchartVC.scrollView
+                                           attribute:NSLayoutAttributeCenterX
+                                           multiplier:1
+                                           constant:0];
+    [self.flowchartVC.scrollView addConstraint:imageConstraint];
+    //
+    // Add scroll view to flowchart view.
+    //
     [self.flowchartVC.view addSubview:self.flowchartVC.scrollView];
+    //
+    // Add flowchart view to parent view.
+    //
     [self.view addSubview:self.flowchartVC.view];
+    //
+    // Add child VC to parent VC.
+    //
     [self addChildViewController:self.flowchartVC];
     self.isFlowchartVisible = YES;
     [self showViewProperties:self.flowchartVC.view];
     
-    // Left VC. (UIViewController - Outline)----------------------------------------------------------------|
-    //
+    /**
+     *  Left VC. (UIViewController - Outline)----------------------------------------------------------------|
+     */
     self.outlineVC = [[GuidelineOutlineVC alloc] init];
     self.outlineVC.view.frame =
         CGRectMake(
@@ -98,8 +134,9 @@
     self.isOutlineVisible = NO;
     [self showViewProperties:self.outlineVC.view];
     
-    // Right VC. (UITableViewController - Checklist)--------------------------------------------------------|
-    //
+    /**
+     *  Right VC. (UITableViewController - Checklist)--------------------------------------------------------|
+     */
     
 }
 
@@ -326,6 +363,8 @@
     NSLog(@"super-view contentMode: %lu", (long)aView.superview.contentMode);
     NSLog(@"super-view bounds origin x: %f", aView.superview.bounds.origin.x);
     NSLog(@"super-view bounds origin y: %f", aView.superview.bounds.origin.y);
+    NSLog(@"super-view bounds size width: %f", aView.superview.bounds.size.width);
+    NSLog(@"super-view bounds size height: %f", aView.superview.bounds.size.height);
     NSLog(@"super-view frame origin x: %f", aView.superview.frame.origin.x);
     NSLog(@"super-view frame origin y: %f", aView.superview.frame.origin.y);
     NSLog(@"super-view frame size width: %f", aView.superview.frame.size.width);
@@ -349,6 +388,8 @@
     NSLog(@"sub-view contentMode: %lu", (long)aView.contentMode);
     NSLog(@"sub-view bounds origin x: %f", aView.bounds.origin.x);
     NSLog(@"sub-view bounds origin y: %f", aView.bounds.origin.y);
+    NSLog(@"sub-view bounds size width: %f", aView.bounds.size.width);
+    NSLog(@"sub-view bounds size height: %f", aView.bounds.size.height);
     NSLog(@"sub-view frame origin x: %f", aView.frame.origin.x);
     NSLog(@"sub-view frame origin y: %f", aView.frame.origin.y);
     NSLog(@"sub-view frame size width: %f", aView.frame.size.width);
