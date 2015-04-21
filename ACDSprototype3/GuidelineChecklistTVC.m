@@ -10,12 +10,18 @@
 
 @interface GuidelineChecklistTVC ()
 
+@property NSArray *tasks;
+
 @end
 
 @implementation GuidelineChecklistTVC
 
 - (void)viewDidLoad {
+    NSLog(@"%%GuidelineChecklistTVC-I-TRACE, -viewDidLoad called.");
+    
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor yellowColor];
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

@@ -10,4 +10,6 @@
 
 @interface GuidelineChecklistTVC : UITableViewController
 
+@property (strong, nonatomic) NSDictionary *checklist;
+
 @end

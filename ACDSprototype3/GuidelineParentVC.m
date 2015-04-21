@@ -9,11 +9,14 @@
 #import "GuidelineParentVC.h"
 #import "GuidelineFlowchartVC.h"
 #import "GuidelineOutlineVC.h"
+#import "GuidelineChecklistTVC.h"
 
 #define CHILD1_WIDTH_FACTOR (1.0/1.0)
 #define CHILD1_HEIGHT_FACTOR (1.0/1.0)
 #define CHILD2_WIDTH_FACTOR (1.0/1.0)
 #define CHILD2_HEIGHT_FACTOR (1.0/1.0)
+#define CHILD3_WIDTH_FACTOR (1.0/2.0)
+#define CHILD3_HEIGHT_FACTOR (1.0/1.0)
 
 @interface GuidelineParentVC ()
 
@@ -29,6 +32,8 @@
 @property BOOL isFlowchartVisible;
 @property (strong, nonatomic) GuidelineOutlineVC *outlineVC;
 @property BOOL isOutlineVisible;
+@property (strong, nonatomic) GuidelineChecklistTVC *checklistVC;
+@property BOOL isChecklistVisible;
 
 - (void)showViewProperties:(UIView *)aView;
 
@@ -65,43 +70,33 @@
                    );
     self.flowchartVC.view.backgroundColor = [UIColor cyanColor];
     //
-    // Instantiate scroll view.
+    // Instantiate and configure the scroll view.
     //
-    self.flowchartVC.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-    self.flowchartVC.scrollView.autoresizingMask = (UIViewAutoresizingFlexibleHeight);
-    CGSize baseScrollViewContentSize;
-    CGSize adjScrollViewContentSize;
-    baseScrollViewContentSize = [self.guidelineDict[@"size"] CGSizeValue];
-    adjScrollViewContentSize =
-        CGSizeMake(
-                   baseScrollViewContentSize.width,
-                   baseScrollViewContentSize.height + (_totalUnusableHeight)
-                   );
-    self.flowchartVC.scrollView.contentSize = adjScrollViewContentSize;
+    self.flowchartVC.scrollView = [[UIScrollView alloc] initWithFrame:self.flowchartVC.view.bounds];
+    self.flowchartVC.scrollView.contentSize = [self.guidelineDict[@"size"] CGSizeValue];
+    self.flowchartVC.scrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     //
-    // Instantiate image view.
+    // Instantiate the image view.
     //
     self.flowchartVC.image = [[UIImageView alloc] initWithFrame:[self.guidelineDict[@"frame"] CGRectValue]];
     [self.flowchartVC.image setImage:[UIImage imageNamed:self.guidelineDict[@"filename"]]];
-    self.flowchartVC.image.center = [self.flowchartVC.scrollView convertPoint:self.flowchartVC.scrollView.center
-                                                                     fromView:self.flowchartVC.scrollView.superview];
+    //
+    // Constrain the image to the center of the scroll view.
+    //
+    self.flowchartVC.image.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.flowchartVC.scrollView addConstraint:
+     [NSLayoutConstraint
+      constraintWithItem:self.flowchartVC.image
+      attribute:NSLayoutAttributeCenterX
+      relatedBy:NSLayoutRelationEqual
+      toItem:self.flowchartVC.scrollView
+      attribute:NSLayoutAttributeCenterX
+      multiplier:1
+      constant:0]];
     //
     // Add image view to scroll view.
     //
     [self.flowchartVC.scrollView addSubview:self.flowchartVC.image];
-    //
-    // Add constraint for image inside scroll view.
-    //
-    self.flowchartVC.image.translatesAutoresizingMaskIntoConstraints = NO;
-    NSLayoutConstraint *imageConstraint = [NSLayoutConstraint
-                                           constraintWithItem:self.flowchartVC.image
-                                           attribute:NSLayoutAttributeCenterX
-                                           relatedBy:NSLayoutRelationEqual
-                                           toItem:self.flowchartVC.scrollView
-                                           attribute:NSLayoutAttributeCenterX
-                                           multiplier:1
-                                           constant:0];
-    [self.flowchartVC.scrollView addConstraint:imageConstraint];
     //
     // Add scroll view to flowchart view.
     //
@@ -115,7 +110,6 @@
     //
     [self addChildViewController:self.flowchartVC];
     self.isFlowchartVisible = YES;
-    [self showViewProperties:self.flowchartVC.view];
     
     /**
      *  Left VC. (UIViewController - Outline)----------------------------------------------------------------|
@@ -132,12 +126,22 @@
     [self.view addSubview:self.outlineVC.view];
     [self addChildViewController:self.outlineVC];
     self.isOutlineVisible = NO;
-    [self showViewProperties:self.outlineVC.view];
-    
+
     /**
      *  Right VC. (UITableViewController - Checklist)--------------------------------------------------------|
      */
-    
+    self.checklistVC = [[GuidelineChecklistTVC alloc] init];
+    self.checklistVC.view.frame =
+        CGRectMake(
+                   roundf((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD3_WIDTH_FACTOR) * 2,
+                   (_topOffset),
+                   roundf((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD3_WIDTH_FACTOR),
+                   roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD3_HEIGHT_FACTOR)
+                   );
+    self.checklistVC.view.backgroundColor = [UIColor brownColor];
+    [self.view addSubview:self.checklistVC.view];
+    [self addChildViewController:self.checklistVC];
+    self.isChecklistVisible = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -148,150 +152,62 @@
 - (void)viewWillLayoutSubviews {
     NSLog(@"%%GuidelineParentVC-I-TRACE, -viewWillLayoutSubviews called.");
     
-    if (self.isFlowchartVisible) {
-        //
-        /*
-        NSLog(@"BEFORE frame:  ParentVC MidX(%f) origin(%f,%f); FlowchartVC MidX(%f) origin(%f,%f); ScrollView MidX(%f) origin(%f,%f)",
-              (CGRectGetMidX(self.view.frame)),
-              (self.view.frame.origin.x),
-              (self.view.frame.origin.y),
-              (CGRectGetMidX(self.flowchartVC.view.frame)),
-              (self.flowchartVC.view.frame.origin.x),
-              (self.flowchartVC.view.frame.origin.y),
-              (CGRectGetMidX(self.flowchartVC.scrollView.frame)),
-              (self.flowchartVC.scrollView.frame.origin.x),
-              (self.flowchartVC.scrollView.frame.origin.y));
-        NSLog(@"BEFORE bounds: ParentVC MidX(%f) origin(%f,%f); FlowchartVC MidX(%f) origin(%f,%f); ScrollView MidX(%f) origin(%f,%f)",
-              (CGRectGetMidX(self.view.bounds)),
-              (self.view.bounds.origin.x),
-              (self.view.bounds.origin.y),
-              (CGRectGetMidX(self.flowchartVC.view.bounds)),
-              (self.flowchartVC.view.bounds.origin.x),
-              (self.flowchartVC.view.bounds.origin.y),
-              (CGRectGetMidX(self.flowchartVC.scrollView.bounds)),
-              (self.flowchartVC.scrollView.bounds.origin.x),
-              (self.flowchartVC.scrollView.bounds.origin.y));
-        */
-        
-        /*
-        CGPoint newCenter;
-        newCenter = CGPointMake(self.flowchartVC.view.center.x,self.flowchartVC.view.center.y);
-        [UIView animateWithDuration:0.3f animations:^{self.flowchartVC.scrollView.center = newCenter;}];
-        */
-        
-        /*
-        CGRect  newFrame;
-        CGFloat newOriginX;
-        CGFloat origOriginY;
-        CGFloat origFrameW;
-        CGFloat origFrameH;
-        newOriginX  = CGRectGetMidX(self.flowchartVC.scrollView.superview.frame) - CGRectGetMidX(self.flowchartVC.scrollView.frame);
-        origOriginY = self.flowchartVC.scrollView.frame.origin.y;
-        origFrameW  = self.flowchartVC.scrollView.frame.size.width;
-        origFrameH  = self.flowchartVC.scrollView.frame.size.height;
-        newFrame    = CGRectMake(newOriginX, origOriginY, origFrameW, origFrameH);
-        [UIView animateWithDuration:0.3f animations:^{self.flowchartVC.scrollView.frame = newFrame;}];
-         */
-        
-        /*
-        NSLog(@"AFTER frame:   ParentVC MidX(%f) origin(%f,%f); FlowchartVC MidX(%f) origin(%f,%f); ScrollView MidX(%f) origin(%f,%f)",
-              (CGRectGetMidX(self.view.frame)),
-              (self.view.frame.origin.x),
-              (self.view.frame.origin.y),
-              (CGRectGetMidX(self.flowchartVC.view.frame)),
-              (self.flowchartVC.view.frame.origin.x),
-              (self.flowchartVC.view.frame.origin.y),
-              (CGRectGetMidX(self.flowchartVC.scrollView.frame)),
-              (self.flowchartVC.scrollView.frame.origin.x),
-              (self.flowchartVC.scrollView.frame.origin.y));
-        NSLog(@"AFTER bounds:  ParentVC MidX(%f) origin(%f,%f); FlowchartVC MidX(%f) origin(%f,%f); ScrollView MidX(%f) origin(%f,%f)",
-              (CGRectGetMidX(self.view.bounds)),
-              (self.view.bounds.origin.x),
-              (self.view.bounds.origin.y),
-              (CGRectGetMidX(self.flowchartVC.view.bounds)),
-              (self.flowchartVC.view.bounds.origin.x),
-              (self.flowchartVC.view.bounds.origin.y),
-              (CGRectGetMidX(self.flowchartVC.scrollView.bounds)),
-              (self.flowchartVC.scrollView.bounds.origin.x),
-              (self.flowchartVC.scrollView.bounds.origin.y));
-         */
-    } else {
-        //
-    }
-    
-    /*
-    if (self.isFlowchartVisible) {
-        self.flowchartVC.view.frame =
-            CGRectMake(
-                       0,
-                       (_topOffset),
-                       roundf((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD1_WIDTH_FACTOR),
-                       roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD1_HEIGHT_FACTOR)
-                       );
-    }
-     */
-    
-    // If the outline view is visible...
+    // If the Outline view is visible...
     if (self.isOutlineVisible) {
-        //...then set its CGRect according to its size factors.
-        self.outlineVC.view.frame =
-            CGRectMake(
-                       0,
-                       (_topOffset),
-                       roundf((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD2_WIDTH_FACTOR),
-                       roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD2_HEIGHT_FACTOR)
-                       );
+        //...then set its CGRect according to its size factor.
     } else {
-        //...else translate its center x left by half of its frame size width.
-        CGPoint newCenter;
-        newCenter = CGPointMake(
-                                -(self.outlineVC.view.frame.size.width / 2),
-                                self.outlineVC.view.center.y
-                                );
+        //...else translate its center.x left by half of its frame size width.
+        CGPoint newCenter =
+            CGPointMake(
+                        0 - (self.outlineVC.view.frame.size.width / 2),
+                        self.outlineVC.view.center.y
+                        );
         [UIView animateWithDuration:0.3f animations:^{
             self.outlineVC.view.center = newCenter;
         }];
     }
     
-    /*
-    if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
-        //
-        NSLog(@"Portrait");
+    // If the Checklist view is visible...
+    if (self.isChecklistVisible) {
+        //...then set the frame rectangle according to the assigned values.
+        self.checklistVC.view.frame =
+            CGRectMake(
+                       roundf((self.view.frame.size.width - (_totalUnusableWidth)) - ((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD3_WIDTH_FACTOR)),
+                       (_topOffset),
+                       roundf((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD3_WIDTH_FACTOR),
+                       roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD3_HEIGHT_FACTOR)
+                       );
     } else {
-        //
-        NSLog(@"Landscape");
+        //...else translate its center.x right by half of its frame size width.
+        CGPoint newCenter =
+            CGPointMake(
+                        (self.view.frame.size.width) + (self.checklistVC.view.frame.size.width / 2),
+                        self.checklistVC.view.center.y
+                        );
+        [UIView animateWithDuration:0.3f animations:^{
+            self.checklistVC.view.center = newCenter;
+        }];
     }
-    */
 }
 
 - (void)addToolbarItems {
     NSLog(@"%%GuidelineParentVC-I-TRACE, -addToolbarItems called.");
     
-    UIBarButtonItem *btn1 = [[UIBarButtonItem alloc] initWithTitle:@"btn1"
+    UIBarButtonItem *btn1 = [[UIBarButtonItem alloc] initWithTitle:@"Text"
                                                              style:UIBarButtonItemStyleDone
                                                             target:self
                                                             action:@selector(doButton1:)];
     
-    UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:@"btn2"
+    UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:@"Checklist"
                                                              style:UIBarButtonItemStyleDone
                                                             target:self
                                                             action:@selector(doButton2:)];
-    
-    UIBarButtonItem *btn3 = [[UIBarButtonItem alloc] initWithTitle:@"btn3"
-                                                             style:UIBarButtonItemStyleDone
-                                                            target:self
-                                                            action:@selector(doButton3:)];
-    
-    UIBarButtonItem *btn4 = [[UIBarButtonItem alloc] initWithTitle:@"btn4"
-                                                             style:UIBarButtonItemStyleDone
-                                                            target:self
-                                                            action:@selector(doButton4:)];
     
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                             target:self
                                                                             action:nil];
     
-    NSArray *buttons = [NSArray arrayWithObjects:spacer, btn1, spacer, btn2, spacer, btn3, spacer, btn4, spacer, nil];
+    NSArray *buttons = [NSArray arrayWithObjects:spacer, btn1, spacer, btn2, spacer, nil];
     
     self.toolbarItems = buttons;
 }
@@ -299,21 +215,45 @@
 - (void)doButton1:(UIButton *)sender {
     NSLog(@"%%GuidelineParentVC-I-TRACE, -doButton1 called.");
     
+    CGPoint newCenter;
+    // If the outline view is visible...
+    if (self.isOutlineVisible) {
+        // ...then shift the view's center.x left by its current width.
+        newCenter = CGPointMake(
+                                self.outlineVC.view.center.x - self.outlineVC.view.bounds.size.width,
+                                self.outlineVC.view.center.y
+                                );
+    } else {
+        // ...else shift the view's center.x right by its current width.
+        newCenter = CGPointMake(
+                                self.outlineVC.view.center.x + self.outlineVC.view.bounds.size.width,
+                                self.outlineVC.view.center.y
+                                );
+    }
+    [UIView animateWithDuration:0.3f animations:^{self.outlineVC.view.center = newCenter;}];
+    self.isOutlineVisible = !self.isOutlineVisible;
 }
 
 - (void)doButton2:(UIButton *)sender {
     NSLog(@"%%GuidelineParentVC-I-TRACE, -doButton2 called.");
     
-}
-
-- (void)doButton3:(UIButton *)sender {
-    NSLog(@"%%GuidelineParentVC-I-TRACE, -doButton3 called.");
-    
-}
-
-- (void)doButton4:(UIButton *)sender {
-    NSLog(@"%%GuidelineParentVC-I-TRACE, -doButton4 called.");
-    
+    CGPoint newCenter;
+    // If the checklist view is visible...
+    if (self.isChecklistVisible) {
+        //...then shift the view's center.x right by its current width.
+        newCenter = CGPointMake(
+                                self.checklistVC.view.center.x + self.checklistVC.view.bounds.size.width,
+                                self.checklistVC.view.center.y
+                                );
+    } else {
+        //...else shift the view's center.x left by its current width.
+        newCenter = CGPointMake(
+                                self.checklistVC.view.center.x - self.checklistVC.view.bounds.size.width,
+                                self.checklistVC.view.center.y
+                                );
+    }
+    [UIView animateWithDuration:0.3f animations:^{self.checklistVC.view.center = newCenter;}];
+    self.isChecklistVisible = !self.isChecklistVisible;
 }
 
 - (void)getFrameSizeHeights {
