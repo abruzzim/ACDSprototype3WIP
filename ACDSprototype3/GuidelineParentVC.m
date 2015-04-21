@@ -81,6 +81,10 @@
     self.flowchartVC.image = [[UIImageView alloc] initWithFrame:[self.guidelineDict[@"frame"] CGRectValue]];
     [self.flowchartVC.image setImage:[UIImage imageNamed:self.guidelineDict[@"filename"]]];
     //
+    // Add image view to scroll view.
+    //
+    [self.flowchartVC.scrollView addSubview:self.flowchartVC.image];
+    //
     // Constrain the image to the center of the scroll view.
     //
     self.flowchartVC.image.translatesAutoresizingMaskIntoConstraints = NO;
@@ -93,10 +97,6 @@
       attribute:NSLayoutAttributeCenterX
       multiplier:1
       constant:0]];
-    //
-    // Add image view to scroll view.
-    //
-    [self.flowchartVC.scrollView addSubview:self.flowchartVC.image];
     //
     // Add scroll view to flowchart view.
     //
@@ -170,6 +170,8 @@
     // If the Checklist view is visible...
     if (self.isChecklistVisible) {
         //...then set the frame rectangle according to the assigned values.
+#define case 1
+#if case == 1
         self.checklistVC.view.frame =
             CGRectMake(
                        roundf((self.view.frame.size.width - (_totalUnusableWidth)) - ((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD3_WIDTH_FACTOR)),
@@ -177,6 +179,15 @@
                        roundf((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD3_WIDTH_FACTOR),
                        roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD3_HEIGHT_FACTOR)
                        );
+#elif case == 2
+        self.checklistVC.view.bounds =
+            CGRectMake(
+                       0,
+                       0,
+                       0,
+                       0
+                       );
+#endif
     } else {
         //...else translate its center.x right by half of its frame size width.
         CGPoint newCenter =
