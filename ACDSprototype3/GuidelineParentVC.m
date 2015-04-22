@@ -35,7 +35,7 @@
 @property (strong, nonatomic) GuidelineChecklistTVC *checklistVC;
 @property BOOL isChecklistVisible;
 
-//- (void)showViewProperties:(UIView *)aView;
+@property BOOL isDebugSet;
 
 @end
 
@@ -56,6 +56,7 @@
     [self getFrameSizeHeights];
     [self getTopOffset];
     [self getUnusableDimensions];
+    self.isDebugSet = NO;
     
     /**
      *  Center VC. (UIViewController - Flowchart)------------------------------------------------------------|
@@ -110,6 +111,9 @@
     // Add child VC to parent VC.
     //
     [self addChildViewController:self.flowchartVC];
+    //
+    // Set view visibility flag.
+    //
     self.isFlowchartVisible = YES;
     
     /**
@@ -124,13 +128,52 @@
                    roundf((self.view.frame.size.height - _totalUnusableHeight) * CHILD2_HEIGHT_FACTOR)
                    );
     
-    [self showViewCenterProperties:self.outlineVC.view];
-    [self showViewFrameProperties:self.outlineVC.view];
-    [self showViewBoundsProperties:self.outlineVC.view];
+    if (self.isDebugSet) {
+        // Check position and size properties.
+        [self showViewCenterProperties:self.outlineVC.view];
+        [self showViewFrameProperties:self.outlineVC.view];
+        [self showViewBoundsProperties:self.outlineVC.view];
+    }
     
     self.outlineVC.view.backgroundColor = [UIColor magentaColor];
+    //
+    // Instantiate, configure and load the web view.
+    //
+    self.outlineVC.webView = [[UIWebView alloc] init];
+    //
+    // Return the NSBundle object that corresponds to the directory where the application
+    // executable is located, or nil if a bundle object could not be created.
+    //
+    NSBundle *mainBundle = [NSBundle mainBundle];
+    //
+    // Return the file URL for the resource identified by the specified name and file extension
+    // or nil if the file cannot be located.
+    //
+    NSURL *localURL = [mainBundle URLForResource:self.guidelineDict[@"html"] withExtension:@"html"];
+    //
+    // Create and return a URL request for the specified URL with a default cache policy of
+    // NSURLRequestUseProtocolCachePolicy and a default timeout interval of 60 seconds.
+    //
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:localURL];
+    //
+    // Connect to tehe given URL by initiating an asynchronous client request.
+    //
+    [self.outlineVC.webView loadRequest:urlRequest];
+    //
+    // Add web view to outline view.
+    //
+    [self.outlineVC.view addSubview:self.outlineVC.webView];
+    //
+    // Add outline view to parent view
+    //
     [self.view addSubview:self.outlineVC.view];
+    //
+    // Add outline VC to parent VC.
+    //
     [self addChildViewController:self.outlineVC];
+    //
+    // Set view visibility flag.
+    //
     self.isOutlineVisible = NO;
 
     /**
@@ -144,13 +187,16 @@
                    roundf((self.view.frame.size.width - _totalUnusableWidth) * CHILD3_WIDTH_FACTOR),
                    roundf((self.view.frame.size.height - _totalUnusableHeight) * CHILD3_HEIGHT_FACTOR)
                    );
-    self.checklistVC.tasks = self.guidelineDict[@"checklist"];
-
-    [self showViewCenterProperties:self.checklistVC.view];
-    [self showViewFrameProperties:self.checklistVC.view];
-    [self showViewBoundsProperties:self.checklistVC.view];
     
-    self.checklistVC.view.backgroundColor = [UIColor brownColor];
+    if (self.isDebugSet) {
+        // Check position and size properties.
+        [self showViewCenterProperties:self.checklistVC.view];
+        [self showViewFrameProperties:self.checklistVC.view];
+        [self showViewBoundsProperties:self.checklistVC.view];
+    }
+    
+    self.checklistVC.tasks = self.guidelineDict[@"checklist"];
+    self.checklistVC.view.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.checklistVC.view];
     [self addChildViewController:self.checklistVC];
     self.isChecklistVisible = NO;
@@ -209,16 +255,21 @@
                                                             target:self
                                                             action:@selector(doButton1:)];
     
-    UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:@"Checklist"
+    UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:@"Flowchart"
                                                              style:UIBarButtonItemStyleDone
                                                             target:self
                                                             action:@selector(doButton2:)];
+    
+    UIBarButtonItem *btn3 = [[UIBarButtonItem alloc] initWithTitle:@"Checklist"
+                                                             style:UIBarButtonItemStyleDone
+                                                            target:self
+                                                            action:@selector(doButton3:)];
     
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                             target:self
                                                                             action:nil];
     
-    NSArray *buttons = [NSArray arrayWithObjects:spacer, btn1, spacer, btn2, spacer, nil];
+    NSArray *buttons = [NSArray arrayWithObjects:spacer, btn1, spacer, btn2, spacer, btn3, spacer, nil];
     
     self.toolbarItems = buttons;
 }
@@ -226,45 +277,21 @@
 - (void)doButton1:(UIButton *)sender {
     NSLog(@"%%GuidelineParentVC-I-TRACE, -doButton1 called.");
     
-    CGPoint newCenter;
-    // If the outline view is visible...
-    if (self.isOutlineVisible) {
-        // ...then shift the view's center.x left by its current width.
-        newCenter = CGPointMake(
-                                self.outlineVC.view.center.x - self.outlineVC.view.bounds.size.width,
-                                self.outlineVC.view.center.y
-                                );
-    } else {
-        // ...else shift the view's center.x right by its current width.
-        newCenter = CGPointMake(
-                                self.outlineVC.view.center.x + self.outlineVC.view.bounds.size.width,
-                                self.outlineVC.view.center.y
-                                );
-    }
-    [UIView animateWithDuration:0.3f animations:^{self.outlineVC.view.center = newCenter;}];
-    self.isOutlineVisible = !self.isOutlineVisible;
+    [self toggleOutlineView];
 }
 
 - (void)doButton2:(UIButton *)sender {
     NSLog(@"%%GuidelineParentVC-I-TRACE, -doButton2 called.");
     
-    CGPoint newCenter;
-    // If the checklist view is visible...
-    if (self.isChecklistVisible) {
-        //...then shift the view's center.x right by its current width.
-        newCenter = CGPointMake(
-                                self.checklistVC.view.center.x + self.checklistVC.view.bounds.size.width,
-                                self.checklistVC.view.center.y
-                                );
-    } else {
-        //...else shift the view's center.x left by its current width.
-        newCenter = CGPointMake(
-                                self.checklistVC.view.center.x - self.checklistVC.view.bounds.size.width,
-                                self.checklistVC.view.center.y
-                                );
-    }
-    [UIView animateWithDuration:0.3f animations:^{self.checklistVC.view.center = newCenter;}];
-    self.isChecklistVisible = !self.isChecklistVisible;
+    if (self.isChecklistVisible) {[self toggleChecklistView];}
+    if (self.isOutlineVisible) {[self toggleOutlineView];}
+    
+}
+
+- (void)doButton3:(UIButton *)sender {
+    NSLog(@"%%GuidelineParentVC-I-TRACE, -doButton3 called.");
+    
+    [self toggleChecklistView];
 }
 
 - (void)getFrameSizeHeights {
@@ -301,6 +328,50 @@
                                 );
 }
 
+- (void)toggleOutlineView {
+    NSLog(@"%%GuidelineParentVC-I-TRACE, -toggleOutlineView called.");
+    
+    CGPoint newCenter;
+    // If the outline view is visible...
+    if (self.isOutlineVisible) {
+        // ...then shift the view's center.x left by its current width.
+        newCenter = CGPointMake(
+                                self.outlineVC.view.center.x - self.outlineVC.view.bounds.size.width,
+                                self.outlineVC.view.center.y
+                                );
+    } else {
+        // ...else shift the view's center.x right by its current width.
+        newCenter = CGPointMake(
+                                self.outlineVC.view.center.x + self.outlineVC.view.bounds.size.width,
+                                self.outlineVC.view.center.y
+                                );
+    }
+    [UIView animateWithDuration:0.3f animations:^{self.outlineVC.view.center = newCenter;}];
+    self.isOutlineVisible = !self.isOutlineVisible;
+}
+
+- (void)toggleChecklistView {
+    NSLog(@"%%GuidelineParentVC-I-TRACE, -toggleChecklistView called.");
+    
+    CGPoint newCenter;
+    // If the checklist view is visible...
+    if (self.isChecklistVisible) {
+        //...then shift the view's center.x right by its current width.
+        newCenter = CGPointMake(
+                                self.checklistVC.view.center.x + self.checklistVC.view.bounds.size.width,
+                                self.checklistVC.view.center.y
+                                );
+    } else {
+        //...else shift the view's center.x left by its current width.
+        newCenter = CGPointMake(
+                                self.checklistVC.view.center.x - self.checklistVC.view.bounds.size.width,
+                                self.checklistVC.view.center.y
+                                );
+    }
+    [UIView animateWithDuration:0.3f animations:^{self.checklistVC.view.center = newCenter;}];
+    self.isChecklistVisible = !self.isChecklistVisible;
+}
+
 - (void)showViewFrameProperties:(UIView *)aView {
     NSLog(@"%%GuidelineParentVC-I-TRACE, -showViewFrameProperties: called.");
     
@@ -326,35 +397,20 @@
     NSLog(@"view center y: %f", aView.center.y);
 }
 
-- (void)showViewProperties:(UIView *)aView {
-    NSLog(@"%%GuidelineParentVC-I-TRACE, -showViewProperties: called.");
+- (void)showViewTransformProperties:(UIView *)aView {
+    NSLog(@"%%GuidelineParentVC-I-TRACE, -showViewTransformProperties: called.");
     
-    // Super view properties.
-    NSLog(@"super-view description: %@", aView.superview.description);
-    NSLog(@"super-view alpha: %f", aView.superview.alpha);
-    NSLog(@"super-view hidden: %@", aView.superview.hidden ? @"YES" : @"NO");
-    NSLog(@"super-view opaque: %@", aView.superview.opaque ? @"YES" : @"NO");
-    NSLog(@"super-view autoresizesSubview: %@", aView.superview.autoresizesSubviews ? @"YES" : @"NO");
-    NSLog(@"super-view autoresizingMask: %lu", (long)aView.superview.autoresizingMask);
-    NSLog(@"super-view contentMode: %lu", (long)aView.superview.contentMode);
-    NSLog(@"super-view bounds origin x: %f", aView.superview.bounds.origin.x);
-    NSLog(@"super-view bounds origin y: %f", aView.superview.bounds.origin.y);
-    NSLog(@"super-view bounds size width: %f", aView.superview.bounds.size.width);
-    NSLog(@"super-view bounds size height: %f", aView.superview.bounds.size.height);
-    NSLog(@"super-view frame origin x: %f", aView.superview.frame.origin.x);
-    NSLog(@"super-view frame origin y: %f", aView.superview.frame.origin.y);
-    NSLog(@"super-view frame size width: %f", aView.superview.frame.size.width);
-    NSLog(@"super-view frame size height: %f", aView.superview.frame.size.height);
-    NSLog(@"super-view center x: %f", aView.superview.center.x);
-    NSLog(@"super-view center y: %f", aView.superview.center.y);
-    NSLog(@"super-view transform a: %f", aView.superview.transform.a);
-    NSLog(@"super-view transform b: %f", aView.superview.transform.b);
-    NSLog(@"super-view transform c: %f", aView.superview.transform.c);
-    NSLog(@"super-view transform d: %f", aView.superview.transform.d);
-    NSLog(@"super-view transform tx: %f", aView.superview.transform.tx);
-    NSLog(@"super-view transform ty: %f", aView.superview.transform.ty);
+    NSLog(@"sub-view transform a: %f", aView.transform.a);
+    NSLog(@"sub-view transform b: %f", aView.transform.b);
+    NSLog(@"sub-view transform c: %f", aView.transform.c);
+    NSLog(@"sub-view transform d: %f", aView.transform.d);
+    NSLog(@"sub-view transform tx: %f", aView.transform.tx);
+    NSLog(@"sub-view transform ty: %f", aView.transform.ty);
+}
+
+- (void)showViewSelectProperties:(UIView *)aView {
+    NSLog(@"%%GuidelineParentVC-I-TRACE, -showViewSelectProperties: called.");
     
-    // Sub-view properties.
     NSLog(@"sub-view description: %@", aView.description);
     NSLog(@"sub-view alpha: %f", aView.alpha);
     NSLog(@"sub-view hidden: %@", aView.hidden ? @"YES" : @"NO");
@@ -362,22 +418,6 @@
     NSLog(@"sub-view autoresizesSubview: %@", aView.autoresizesSubviews ? @"YES" : @"NO");
     NSLog(@"sub-view autoresizingMask: %lu", (long)aView.autoresizingMask);
     NSLog(@"sub-view contentMode: %lu", (long)aView.contentMode);
-    NSLog(@"sub-view bounds origin x: %f", aView.bounds.origin.x);
-    NSLog(@"sub-view bounds origin y: %f", aView.bounds.origin.y);
-    NSLog(@"sub-view bounds size width: %f", aView.bounds.size.width);
-    NSLog(@"sub-view bounds size height: %f", aView.bounds.size.height);
-    NSLog(@"sub-view frame origin x: %f", aView.frame.origin.x);
-    NSLog(@"sub-view frame origin y: %f", aView.frame.origin.y);
-    NSLog(@"sub-view frame size width: %f", aView.frame.size.width);
-    NSLog(@"sub-view frame size height: %f", aView.frame.size.height);
-    NSLog(@"sub-view center x: %f", aView.center.x);
-    NSLog(@"sub-view center y: %f", aView.center.y);
-    NSLog(@"sub-view transform a: %f", aView.transform.a);
-    NSLog(@"sub-view transform b: %f", aView.transform.b);
-    NSLog(@"sub-view transform c: %f", aView.transform.c);
-    NSLog(@"sub-view transform d: %f", aView.transform.d);
-    NSLog(@"sub-view transform tx: %f", aView.transform.tx);
-    NSLog(@"sub-view transform ty: %f", aView.transform.ty);
 }
 
 @end

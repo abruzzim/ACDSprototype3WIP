@@ -82,6 +82,7 @@
                                 [NSValue valueWithCGSize:CGSizeMake(768, 4914)], @"size",
                                 [NSValue valueWithCGRect:CGRectMake(0, 0, 768, 4914)], @"frame",
                                 tasks1, @"checklist",
+                                @"sepsis", @"html",
                                 nil];
     
     NSDictionary *guideline2 = [NSDictionary dictionaryWithObjectsAndKeys:

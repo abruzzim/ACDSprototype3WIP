@@ -10,4 +10,6 @@
 
 @interface GuidelineOutlineVC : UIViewController
 
+@property (strong, nonatomic) UIWebView *webView;
+
 @end
