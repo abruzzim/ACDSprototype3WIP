@@ -137,8 +137,9 @@
     
     self.outlineVC.view.backgroundColor = [UIColor magentaColor];
     //
-    // Instantiate, configure and load the web view.
+    // Instantiate the web view and size to outline view.
     //
+    //self.outlineVC.webView = [[UIWebView alloc] initWithFrame:self.outlineVC.view.bounds];
     self.outlineVC.webView = [[UIWebView alloc] init];
     //
     // Return the NSBundle object that corresponds to the directory where the application
@@ -163,6 +164,46 @@
     // Add web view to outline view.
     //
     [self.outlineVC.view addSubview:self.outlineVC.webView];
+    //
+    // Constrain the web view to the outline view.
+    //
+    self.outlineVC.webView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.outlineVC.view addConstraint:
+     [NSLayoutConstraint
+      constraintWithItem:self.outlineVC.webView
+      attribute:NSLayoutAttributeTop
+      relatedBy:NSLayoutRelationEqual
+      toItem:self.outlineVC.view
+      attribute:NSLayoutAttributeTop
+      multiplier:1
+      constant:0]];
+    [self.outlineVC.view addConstraint:
+     [NSLayoutConstraint
+      constraintWithItem:self.outlineVC.webView
+      attribute:NSLayoutAttributeBottom
+      relatedBy:NSLayoutRelationEqual
+      toItem:self.outlineVC.view
+      attribute:NSLayoutAttributeBottom
+      multiplier:1
+      constant:0]];
+    [self.outlineVC.view addConstraint:
+     [NSLayoutConstraint
+      constraintWithItem:self.outlineVC.webView
+      attribute:NSLayoutAttributeLeft
+      relatedBy:NSLayoutRelationEqual
+      toItem:self.outlineVC.view
+      attribute:NSLayoutAttributeLeft
+      multiplier:1
+      constant:0]];
+    [self.outlineVC.view addConstraint:
+     [NSLayoutConstraint
+      constraintWithItem:self.outlineVC.webView
+      attribute:NSLayoutAttributeRight
+      relatedBy:NSLayoutRelationEqual
+      toItem:self.outlineVC.view
+      attribute:NSLayoutAttributeRight
+      multiplier:1
+      constant:0]];
     //
     // Add outline view to parent view
     //
