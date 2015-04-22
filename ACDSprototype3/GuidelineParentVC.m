@@ -15,7 +15,7 @@
 #define CHILD1_HEIGHT_FACTOR (1.0/1.0)
 #define CHILD2_WIDTH_FACTOR (1.0/1.0)
 #define CHILD2_HEIGHT_FACTOR (1.0/1.0)
-#define CHILD3_WIDTH_FACTOR (1.0/2.0)
+#define CHILD3_WIDTH_FACTOR (1.0/3.0)
 #define CHILD3_HEIGHT_FACTOR (1.0/1.0)
 
 @interface GuidelineParentVC ()
@@ -35,7 +35,7 @@
 @property (strong, nonatomic) GuidelineChecklistTVC *checklistVC;
 @property BOOL isChecklistVisible;
 
-- (void)showViewProperties:(UIView *)aView;
+//- (void)showViewProperties:(UIView *)aView;
 
 @end
 
@@ -64,9 +64,9 @@
     self.flowchartVC.view.frame =
         CGRectMake(
                    0,
-                   (_topOffset),
-                   roundf((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD1_WIDTH_FACTOR),
-                   roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD1_HEIGHT_FACTOR)
+                   _topOffset,
+                   roundf((self.view.frame.size.width - _totalUnusableWidth) * CHILD1_WIDTH_FACTOR),
+                   roundf((self.view.frame.size.height - _totalUnusableHeight) * CHILD1_HEIGHT_FACTOR)
                    );
     self.flowchartVC.view.backgroundColor = [UIColor cyanColor];
     //
@@ -74,7 +74,8 @@
     //
     self.flowchartVC.scrollView = [[UIScrollView alloc] initWithFrame:self.flowchartVC.view.bounds];
     self.flowchartVC.scrollView.contentSize = [self.guidelineDict[@"size"] CGSizeValue];
-    self.flowchartVC.scrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    self.flowchartVC.scrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth |
+                                                    UIViewAutoresizingFlexibleHeight);
     //
     // Instantiate the image view.
     //
@@ -117,11 +118,16 @@
     self.outlineVC = [[GuidelineOutlineVC alloc] init];
     self.outlineVC.view.frame =
         CGRectMake(
-                   -roundf((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD2_WIDTH_FACTOR),
-                   (_topOffset),
-                   roundf((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD2_WIDTH_FACTOR),
-                   roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD2_HEIGHT_FACTOR)
+                   -roundf((self.view.frame.size.width - _totalUnusableWidth) * CHILD2_WIDTH_FACTOR),
+                   _topOffset,
+                   roundf((self.view.frame.size.width - _totalUnusableWidth) * CHILD2_WIDTH_FACTOR),
+                   roundf((self.view.frame.size.height - _totalUnusableHeight) * CHILD2_HEIGHT_FACTOR)
                    );
+    
+    [self showViewCenterProperties:self.outlineVC.view];
+    [self showViewFrameProperties:self.outlineVC.view];
+    [self showViewBoundsProperties:self.outlineVC.view];
+    
     self.outlineVC.view.backgroundColor = [UIColor magentaColor];
     [self.view addSubview:self.outlineVC.view];
     [self addChildViewController:self.outlineVC];
@@ -133,11 +139,17 @@
     self.checklistVC = [[GuidelineChecklistTVC alloc] init];
     self.checklistVC.view.frame =
         CGRectMake(
-                   roundf((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD3_WIDTH_FACTOR) * 2,
-                   (_topOffset),
-                   roundf((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD3_WIDTH_FACTOR),
-                   roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD3_HEIGHT_FACTOR)
+                   roundf(self.view.frame.size.width - _totalUnusableWidth),
+                   _topOffset,
+                   roundf((self.view.frame.size.width - _totalUnusableWidth) * CHILD3_WIDTH_FACTOR),
+                   roundf((self.view.frame.size.height - _totalUnusableHeight) * CHILD3_HEIGHT_FACTOR)
                    );
+    self.checklistVC.tasks = self.guidelineDict[@"checklist"];
+
+    [self showViewCenterProperties:self.checklistVC.view];
+    [self showViewFrameProperties:self.checklistVC.view];
+    [self showViewBoundsProperties:self.checklistVC.view];
+    
     self.checklistVC.view.backgroundColor = [UIColor brownColor];
     [self.view addSubview:self.checklistVC.view];
     [self addChildViewController:self.checklistVC];
@@ -154,50 +166,38 @@
     
     // If the Outline view is visible...
     if (self.isOutlineVisible) {
-        //...then set its CGRect according to its size factor.
+        //...then ?.
     } else {
         //...else translate its center.x left by half of its frame size width.
-        CGPoint newCenter =
+        self.outlineVC.view.center =
             CGPointMake(
-                        0 - (self.outlineVC.view.frame.size.width / 2),
+                        0 - (self.outlineVC.view.frame.size.width / 2.0),
                         self.outlineVC.view.center.y
                         );
-        [UIView animateWithDuration:0.3f animations:^{
-            self.outlineVC.view.center = newCenter;
-        }];
     }
     
     // If the Checklist view is visible...
     if (self.isChecklistVisible) {
-        //...then set the frame rectangle according to the assigned values.
-#define case 1
-#if case == 1
+        //...then set the frame rectangle according to its size factors
+        //   and on-screen position.
         self.checklistVC.view.frame =
             CGRectMake(
-                       roundf((self.view.frame.size.width - (_totalUnusableWidth)) - ((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD3_WIDTH_FACTOR)),
-                       (_topOffset),
-                       roundf((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD3_WIDTH_FACTOR),
-                       roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD3_HEIGHT_FACTOR)
+                       roundf(self.view.frame.size.width - _totalUnusableWidth
+                              - ((self.view.frame.size.width - _totalUnusableWidth) * CHILD3_WIDTH_FACTOR)),
+                       _topOffset,
+                       roundf((self.view.frame.size.width - _totalUnusableWidth) * CHILD3_WIDTH_FACTOR),
+                       roundf((self.view.frame.size.height - _totalUnusableHeight) * CHILD3_HEIGHT_FACTOR)
                        );
-#elif case == 2
-        self.checklistVC.view.bounds =
-            CGRectMake(
-                       0,
-                       0,
-                       0,
-                       0
-                       );
-#endif
     } else {
-        //...else translate its center.x right by half of its frame size width.
-        CGPoint newCenter =
-            CGPointMake(
-                        (self.view.frame.size.width) + (self.checklistVC.view.frame.size.width / 2),
-                        self.checklistVC.view.center.y
-                        );
-        [UIView animateWithDuration:0.3f animations:^{
-            self.checklistVC.view.center = newCenter;
-        }];
+        //...else set the frame rectangle according to its size factors
+        //   off-screen position.
+        self.checklistVC.view.frame =
+            CGRectMake(
+                       roundf(self.view.frame.size.width - _totalUnusableWidth),
+                       _topOffset,
+                       roundf((self.view.frame.size.width - _totalUnusableWidth) * CHILD3_WIDTH_FACTOR),
+                       roundf((self.view.frame.size.height - _totalUnusableHeight) * CHILD3_HEIGHT_FACTOR)
+                       );
     }
 }
 
@@ -299,6 +299,31 @@
                                 self.toolBarFrameSizeHeight +
                                 self.tabBarFrameSizeHeight
                                 );
+}
+
+- (void)showViewFrameProperties:(UIView *)aView {
+    NSLog(@"%%GuidelineParentVC-I-TRACE, -showViewFrameProperties: called.");
+    
+    NSLog(@"view frame origin x: %f", aView.frame.origin.x);
+    NSLog(@"view frame origin y: %f", aView.frame.origin.y);
+    NSLog(@"view frame size width: %f", aView.frame.size.width);
+    NSLog(@"view frame size height: %f", aView.frame.size.height);
+}
+
+- (void)showViewBoundsProperties:(UIView *)aView {
+    NSLog(@"%%GuidelineParentVC-I-TRACE, -showViewBoundsProperties: called.");
+
+    NSLog(@"view bounds origin x: %f", aView.bounds.origin.x);
+    NSLog(@"view bounds origin y: %f", aView.bounds.origin.y);
+    NSLog(@"view bounds size width: %f", aView.bounds.size.width);
+    NSLog(@"view bounds size height: %f", aView.bounds.size.height);
+}
+
+- (void)showViewCenterProperties:(UIView *)aView {
+    NSLog(@"%%GuidelineParentVC-I-TRACE, -showViewCenterProperties: called.");
+
+    NSLog(@"view center x: %f", aView.center.x);
+    NSLog(@"view center y: %f", aView.center.y);
 }
 
 - (void)showViewProperties:(UIView *)aView {

@@ -7,10 +7,9 @@
 //
 
 #import "GuidelineChecklistTVC.h"
+#import "GuidelineChecklistTask.h"
 
 @interface GuidelineChecklistTVC ()
-
-@property NSArray *tasks;
 
 @end
 
@@ -21,7 +20,6 @@
     
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor yellowColor];
-    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -38,26 +36,55 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
+    NSLog(@"%%GuidelineChecklistTVC-I-TRACE, -numberOfSectionsInTableView: called.");
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    NSLog(@"%%GuidelineChecklistTVC-I-TRACE, -tableView:numberOfRowsInSection: called.");
+    // Return the number of rows in a section.
+    return self.tasks.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    NSLog(@"%%GuidelineChecklistTVC-I-TRACE, -tableView:cellForRowAtIndexPath: called.");
+
+    // Return a reusable table-view cell object located by its identifier.
+    //
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCell"];
     
-    // Configure the cell...
+    // Instantiate a reusable table-view cell object if one does not exist.
+    //
+    if (nil == cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:@"TaskCell"];
+    }
     
+    // Configure the cell.
+    //
+    GuidelineChecklistTask *task = [self.tasks objectAtIndex:indexPath.row];
+    cell.textLabel.text = task.title;
+    if (task.completed) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     return cell;
 }
-*/
+
+#pragma mark - Table view delagate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%%GuidelineChecklistTVC-I-TRACE, -tableView:didSelectRowAtIndexPath: called.");
+    
+    // Deselect the cell immediately after selection.
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    GuidelineChecklistTask *tappedItem = [self.tasks objectAtIndex:indexPath.row];
+    tappedItem.completed = !tappedItem.completed;
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+}
 
 /*
 // Override to support conditional editing of the table view.

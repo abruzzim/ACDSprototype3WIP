@@ -34,6 +34,7 @@
 		5A1F7B271AE0359900DE9885 /* GuidelineChecklistTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F7B261AE0359900DE9885 /* GuidelineChecklistTVC.m */; };
 		5A1F7B2D1AE066D400DE9885 /* GuidelineFlowchartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F7B2C1AE066D400DE9885 /* GuidelineFlowchartVC.m */; };
 		5A1F7B301AE09A7500DE9885 /* GuidelineOutlineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F7B2F1AE09A7500DE9885 /* GuidelineOutlineVC.m */; };
+		AF65886D1AE7073F0039558D /* GuidelineChecklistTask.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65886C1AE7073F0039558D /* GuidelineChecklistTask.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,8 @@
 		5A1F7B2C1AE066D400DE9885 /* GuidelineFlowchartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuidelineFlowchartVC.m; sourceTree = "<group>"; };
 		5A1F7B2E1AE09A7500DE9885 /* GuidelineOutlineVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuidelineOutlineVC.h; sourceTree = "<group>"; };
 		5A1F7B2F1AE09A7500DE9885 /* GuidelineOutlineVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuidelineOutlineVC.m; sourceTree = "<group>"; };
+		AF65886B1AE7073F0039558D /* GuidelineChecklistTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuidelineChecklistTask.h; sourceTree = "<group>"; };
+		AF65886C1AE7073F0039558D /* GuidelineChecklistTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuidelineChecklistTask.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +180,8 @@
 				5A1F7B2F1AE09A7500DE9885 /* GuidelineOutlineVC.m */,
 				5A1F7B251AE0359900DE9885 /* GuidelineChecklistTVC.h */,
 				5A1F7B261AE0359900DE9885 /* GuidelineChecklistTVC.m */,
+				AF65886B1AE7073F0039558D /* GuidelineChecklistTask.h */,
+				AF65886C1AE7073F0039558D /* GuidelineChecklistTask.m */,
 				5A1F7B191AE0165F00DE9885 /* Guidelines.h */,
 				5A1F7B1A1AE0165F00DE9885 /* Guidelines.m */,
 				5A1F7AC61ADF0D0000DE9885 /* VitalsParentVC.h */,
@@ -325,6 +330,7 @@
 				5A1F7B271AE0359900DE9885 /* GuidelineChecklistTVC.m in Sources */,
 				5A1F7AC51ADF0CD100DE9885 /* VitalsNC.m in Sources */,
 				5A1F7ABF1ADEE9D900DE9885 /* GuidelinesNC.m in Sources */,
+				AF65886D1AE7073F0039558D /* GuidelineChecklistTask.m in Sources */,
 				5A1F7AC81ADF0D0000DE9885 /* VitalsParentVC.m in Sources */,
 				5A1F7ACB1ADF105B00DE9885 /* FormularyNC.m in Sources */,
 				5A1F7AB31ADEDE3700DE9885 /* MainTBC.m in Sources */,
