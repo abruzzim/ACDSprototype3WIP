@@ -15,6 +15,13 @@
 #define CHILD2_WIDTH_FACTOR (2.0/3.0)
 #define CHILD2_HEIGHT_FACTOR (1.0/1.0)
 
+#define UIColorFromHex(hexValue) \
+[UIColor \
+colorWithRed:((float)((hexValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((hexValue & 0x00FF00) >>  8))/255.0 \
+blue:((float)((hexValue & 0x0000FF) >>  0))/255.0 \
+alpha:1.0]
+
 @interface TransportsParentVC ()
 
 @property CGFloat statusBarFrameSizeHeight;
@@ -38,7 +45,7 @@
     NSLog(@"%%TransportsParentVC-I-TRACE, -viewDidLoad called.");
     
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = UIColorFromHex(0xE2D2BF);
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.title = @"Medical Transports";
     [self addToolbarItems];
@@ -56,7 +63,7 @@
                    roundf((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD1_WIDTH_FACTOR),
                    roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD1_HEIGHT_FACTOR)
                    );
-    self.childVC1.view.backgroundColor = [UIColor orangeColor];
+    self.childVC1.view.backgroundColor = UIColorFromHex(0xBAA4DC);
     self.childVC1.tableView.layer.borderWidth = 1.0;
     self.childVC1.tableView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.isChild1Visible = YES;
@@ -73,7 +80,7 @@
                    roundf((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD2_WIDTH_FACTOR),
                    roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD2_HEIGHT_FACTOR)
                    );
-    self.childVC2.view.backgroundColor = [UIColor purpleColor];
+    self.childVC2.view.backgroundColor = UIColorFromHex(0x6DA97A);
     self.childVC2.tableView.layer.borderWidth = 1.0;
     self.childVC2.tableView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.isChild2Visible = YES;

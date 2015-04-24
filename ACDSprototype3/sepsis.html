@@ -1,11 +1,101 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sepsis Guideline</title>
-        <style></style>
+        <meta charset="utf-8">
+            <meta name="generator" content="pandoc">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+                    <meta name="author" content="Framework Solutions, LLC">
+                        <meta name="author" content="Mario Abruzzi">
+                            <meta name="author" content="Erik Ehrke">
+                                <title>Sepsis Pediatric Guideline</title>
+                                <style type="text/css">code{white-space: pre;}</style>
+                                <!--[if lt IE 9]>
+                                 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+                                 <![endif]-->
+                                <link href="data:text/css,%2A%20%7B%0A%20%20%2Dmoz%2Dbox%2Dsizing%3A%20border%2Dbox%3B%0A%20%20%2Dwebkit%2Dbox%2Dsizing%3A%20border%2Dbox%3B%0A%20%20box%2Dsizing%3A%20border%2Dbox%3B%20%7D%0A%0Abody%20%7B%0A%20%20font%2Dsize%3A%201em%3B%0A%20%20height%3A%20100%25%3B%0A%20%20margin%3A%200%20auto%3B%0A%20%20max%2Dwidth%3A%2054em%3B%0A%20%20padding%3A%200%201em%204%2E5em%3B%20%7D%0A%20%20%40media%20screen%20and%20%28min%2Dwidth%3A%20600px%29%20%7B%0A%20%20%20%20body%20%7B%0A%20%20%20%20%20%20padding%3A%200%204em%204%2E5em%3B%20%7D%20%7D%0A%20%20%40media%20screen%20and%20%28min%2Dwidth%3A%20700px%29%20%7B%0A%20%20%20%20body%20%7B%0A%20%20%20%20%20%20font%2Dsize%3A%201%2E125em%3B%20%7D%20%7D%0A%20%20%40media%20screen%20and%20%28min%2Dwidth%3A%20800px%29%20%7B%0A%20%20%20%20body%20%7B%0A%20%20%20%20%20%20padding%3A%200%206em%204%2E5em%3B%20%7D%20%7D%0A%20%20%40media%20screen%20and%20%28min%2Dwidth%3A%20880px%29%20%7B%0A%20%20%20%20body%20%7B%0A%20%20%20%20%20%20padding%3A%200%208em%204%2E5em%3B%20%7D%20%7D%0A%20%20%40media%20screen%20and%20%28min%2Dwidth%3A%20940px%29%20%7B%0A%20%20%20%20body%20%7B%0A%20%20%20%20%20%20padding%3A%200%2010em%204%2E5em%3B%20%7D%20%7D%0A%20%20%40media%20screen%20and%20%28min%2Dwidth%3A%201800px%29%20%7B%0A%20%20%20%20body%20%7B%0A%20%20%20%20%20%20font%2Dsize%3A%201%2E375em%3B%20%7D%20%7D%0A%0Anav%20%7B%0A%20%20border%2Dbottom%3A%201px%20dashed%20%23dddddd%3B%0A%20%20border%2Dtop%3A%201px%20dashed%20%23dddddd%3B%0A%20%20padding%3A%201%2E5em%200%3B%0A%20%20margin%3A%201%2E5em%200%3B%20%7D%0A%20%20nav%20%3E%20ul%20%3E%20li%20%3E%20a%20%7B%0A%20%20%20%20font%2Dweight%3A%20bold%3B%20%7D%0A%0Aheader%20%7B%0A%20%20padding%3A%204%2E5em%200%3B%20%7D%0A%0Abody%20%7B%0A%20%20%2Dwebkit%2Dfont%2Dsmoothing%3A%20antialiased%3B%0A%20%20color%3A%20%23444444%3B%0A%20%20font%2Dfamily%3A%20%22proxima%2Dnova%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0A%20%20line%2Dheight%3A%201%2E5em%3B%20%7D%0A%0Ah1%2C%20h2%2C%20h3%2C%20h4%2C%20h5%2C%20h6%20%7B%0A%20%20color%3A%20%23222222%3B%0A%20%20font%2Dfamily%3A%20%22proxima%2Dnova%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0A%20%20line%2Dheight%3A%201%2E25em%3B%0A%20%20margin%3A%201%2E5em%200%200%2E375em%3B%0A%20%20text%2Drendering%3A%20optimizeLegibility%3B%20%7D%0A%20%20h1%20%3E%20a%2C%20h2%20%3E%20a%2C%20h3%20%3E%20a%2C%20h4%20%3E%20a%2C%20h5%20%3E%20a%2C%20h6%20%3E%20a%20%7B%0A%20%20%20%20color%3A%20%23222222%3B%20%7D%0A%0Ah1%20%7B%0A%20%20margin%3A%203em%200%200%2E375em%3B%0A%20%20font%2Dsize%3A%201%2E75em%3B%20%7D%0A%20%20h1%20%3E%20a%20%7B%0A%20%20%20%20color%3A%20%23c32f34%3B%20%7D%0A%20%20%20%20h1%20%3E%20a%3Ahover%2C%20h1%20%3E%20a%3Afocus%20%7B%0A%20%20%20%20%20%20color%3A%20%23222222%3B%20%7D%0A%20%20h1%2Etitle%20%7B%0A%20%20%20%20font%2Dsize%3A%203em%3B%0A%20%20%20%20font%2Dweight%3A%20900%3B%0A%20%20%20%20line%2Dheight%3A%201%3B%0A%20%20%20%20margin%3A%200%200%20%2E125em%3B%20%7D%0A%20%20%20%20%40media%20screen%20and%20%28min%2Dwidth%3A%20600px%29%20%7B%0A%20%20%20%20%20%20h1%2Etitle%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%204em%3B%20%7D%20%7D%0A%0Ah2%20%7B%0A%20%20font%2Dsize%3A%201em%3B%0A%20%20letter%2Dspacing%3A%201px%3B%0A%20%20text%2Dtransform%3A%20uppercase%3B%20%7D%0A%20%20h2%2Eauthor%20%7B%0A%20%20%20%20color%3A%20%23999999%3B%0A%20%20%20%20float%3A%20left%3B%0A%20%20%20%20font%2Dsize%3A%201em%3B%0A%20%20%20%20font%2Dweight%3A%20200%3B%0A%20%20%20%20margin%3A%200%3B%0A%20%20%20%20text%2Dtransform%3A%20none%3B%20%7D%0A%20%20%20%20%40media%20screen%20and%20%28min%2Dwidth%3A%20600px%29%20%7B%0A%20%20%20%20%20%20h2%2Eauthor%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%201%2E25em%3B%20%7D%20%7D%0A%20%20%20%20h2%2Eauthor%3Anot%28%3Alast%2Dchild%29%20%7B%0A%20%20%20%20%20%20margin%2Dright%3A%201em%3B%20%7D%0A%0Ah3%20%7B%0A%20%20font%2Dsize%3A%201em%3B%20%7D%0A%0Ah4%20%7B%0A%20%20font%2Dsize%3A%201%2E5em%3B%20%7D%0A%0Ah5%20%7B%0A%20%20font%2Dsize%3A%201%2E25em%3B%20%7D%0A%0Ah6%20%7B%0A%20%20font%2Dsize%3A%201em%3B%20%7D%0A%0Ap%20%7B%0A%20%20margin%3A%200%200%200%2E75em%3B%20%7D%0A%0Aa%20%7B%0A%20%20%2Dmoz%2Dtransition%3A%20all%200%2E15s%20ease%2Dout%200%3B%0A%20%20%2Dwebkit%2Dtransition%3A%20all%200%2E15s%20ease%2Dout%200%3B%0A%20%20color%3A%20%23477dca%3B%0A%20%20text%2Ddecoration%3A%20none%3B%0A%20%20transition%3A%20all%200%2E15s%20ease%2Dout%200%3B%20%7D%0A%20%20a%3Ahover%20%7B%0A%20%20%20%20color%3A%20%232c5999%3B%20%7D%0A%20%20a%3Aactive%2C%20a%3Afocus%20%7B%0A%20%20%20%20color%3A%20%232c5999%3B%0A%20%20%20%20outline%3A%20none%3B%20%7D%0A%0Ahr%20%7B%0A%20%20border%3A%20none%3B%0A%20%20border%2Dbottom%3A%201px%20solid%20%23dddddd%3B%0A%20%20margin%3A%201%2E5em%200%3B%20%7D%0A%0Aimg%20%7B%0A%20%20margin%3A%200%3B%0A%20%20max%2Dwidth%3A%20100%25%3B%20%7D%0A%0Acode%20%7B%0A%20%20font%2Dfamily%3A%20inconsolata%2C%20%22Bitstream%20Vera%20Sans%20Mono%22%2C%20Consolas%2C%20Courier%2C%20monospace%3B%0A%20%20font%2Dsize%3A%20%2E875em%3B%0A%20%20white%2Dspace%3A%20pre%3B%0A%20%20word%2Dwrap%3A%20break%2Dword%3B%20%7D%0A%0Apre%20%7B%0A%20%20background%3A%20%23f7f7f7%3B%0A%20%20border%3A%201px%20solid%20%23dddddd%3B%0A%20%20line%2Dheight%3A%201%2E35%3B%0A%20%20overflow%2Dx%3A%20scroll%3B%0A%20%20padding%3A%20%2E5rem%201rem%3B%0A%20%20white%2Dspace%3A%20pre%3B%0A%20%20word%2Dwrap%3A%20normal%3B%20%7D%0A%20%20pre%20code%20%7B%0A%20%20%20%20word%2Dwrap%3A%20normal%3B%20%7D%0A%0Ablockquote%20%7B%0A%20%20border%2Dleft%3A%202px%20solid%20%23dddddd%3B%0A%20%20color%3A%20%236a6a6a%3B%0A%20%20margin%3A%201%2E5em%200%3B%0A%20%20padding%2Dleft%3A%200%2E75em%3B%20%7D%0A" rel="stylesheet">
+                                    <script type="text/javascript">
+                                        (function() {
+                                         var config = {
+                                         kitId: 'bgd6ksj',
+                                         scriptTimeout: 3000
+                                         };
+                                         var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/(\s|^)wf-loading(\s|$)/g," ");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script"),d=false;tk.src='//use.typekit.net/'+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(d||a&&a!="complete"&&a!="loaded")return;d=true;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
+                                         })();
+                                        </script>
     </head>
     <body>
-        <h1>Sepsis Header</h1>
-        <script type="text/javascript" src=""></script>
+        <header>
+            <h1 class="title">Sepsis Pediatric Bundle</h1>
+            <h3><small>(Version 4-24-2012)</small></h3>
+            <h2>Children's Hospital Research Center Oakland&nbsp;</h2>
+            <h2 class="author">Heidi Flori, M.D.&nbsp;</h2>
+            <h2 class="author">Natalie Cvijanovick M.D.&nbsp;</h2>
+        </header>
+        <nav id="TOC">
+            <ul>
+                <li>
+                    <a href="#">Sepsis Pediatric Treatment Bundle</a>
+                    <ul>
+                        <li><a href="#period-zero">&quotTime Zero&quot</a>
+                            <li><a href="#period-one">0-15 Minutes</a>
+                            <li><a href="#period-two">15-60 Minutes</a>
+                            <li><a href="#period-three">1-4 Hours</a>
+                            </ul>
+                            </li>
+                            </ul>
+                            </nav>
+                            <section id="period-zero" class="level1">
+                            <h1>&quotTime Zero&quot</h1>
+                            <p>The first point at which anyone considers that a child might be septic.</p>
+                            <ol type="1">
+                            <li><p><b>Concern for shock</b> - Besides fever, tachycardia, and hypotension, some patients present initially only with altered mental status and decreased perfusion (delayed or flash capillary refill) – REFER TO RAPID SEPSIS ASSESSMENT TOOL (ideal:link to Rapid Sepsis Assessment Tool)</p></li>
+                            <li><p>Call Rapid Response Team or move to resuscitation room.</p></li>
+                            <li><p>Place <b>oxygen</b> on <b>all</b> patients - min. 2 L NC to keep SpO2 > 94%!</p></li>
+                            <li><p>Initiate attempts at <b>IV access</b> and <b>lab testing</b> <b>(OK to use Broviac/central line)</b>: <b>POC</b> tests - blood gas, glucose, lytes, lactate.  Also CBC, Chem 8, blood cultures)</p></li>
+                            <li><p>Know IO equipment location.</p></li>
+                            </ol>
+                            </section>
+                            <section id="period-one" class="level1">
+                            <h1>0-15 Minutes - START</h1>
+                            <p>First Interval</p>
+                            <ol type="1">
+                            <li><p>If no IV access by 5 minutes, consider IO  (ideal: link to IO video and/or protocol)</p><h3>(Timer to pop up: &quot5 minutes have passed. Place IO if no IV access obtained&quot)</h3></li>
+                            <li><p>PUSH fluids (NS by hand over 5 minutes if possible, not on a pump, 20 ml/kg IV, repeat until perfusion improves unless rales or hepatomegaly develop, maximum 60 ml/kg IV.  Assess liver margin after each NS bolus. Fluid resuscitation will take longer than 15 minutes, but initiate here )</p></li>
+                            <li><p>Assess point of care results and treat hypoglycemia ideal:link to hypoglycemia protocol) and hypocalcemia ionized Ca &lt 1 - confirm with CHRCO physician control)  ideal:link to calcium replacement protocol).  Consider NaHCO<sub>3</sub> 1 mEq/kg for pH &lt 7.0.</p></li>
+                            <li><p>Order antibiotics  ideal:link to antibiotic algorithm with antibiotic and dosing recommendations, e.g. 0I28 days ampicillin 50 mg/kg and cefotaxime 50 mg/kg iv; >28 days: ceftriaxone 50 mg/kg iv up to 2 gm.  Do not administer with calcium, etc.) and give ASAP  Goal for first dose to be in by 30 minutes )</p></li>
+                        <li><p>Order inotropes to bedside, use if BP low and 2nd IV available, MAY give inotropes through PIV or IO, even on the ward (link to lookup: dopamine first up to 10 mcg/kg/min then, a. if cold extremities add epinephrine 0.01-0.3 mcg/kg/min; b. if warm extremities add norepinephrine 0.01-0.3 mcg/kg/min)</p></li>
+                        </ol>
+                        </section>
+                        <section id="period-two" class="level1">
+                            <h1>15-60 Minutes – REASSESS</h1>
+                            <h3>(Timer to pop up: &quot15 minutes have passed. Reassess patient&quot)</h3>
+                                <p>Second Interval</p>
+                                <ol type="1">
+                                <li><p>Consider hydrocortisone for potential adrenal insufficiency! (slow IV push: 25 mg IV up to 6 months, 50 mg IV up to 10 years, 100 mg IV if older than 10 years)</p></li>
+                                <li><p>Reconsider need for inotropes if not already being given.</p></li>
+                                <li>
+                                <p>Reassess:</p>
+                                <ol type="a">
+                                <li>Appropriate cultures have been drawn (min. 1 mL blood)</li>
+                                <li>Antibiotics given</li>
+                                <li>Sufficient fluid resuscitation given</li>
+                                </ol>
+                                </li>
+                                </ol>
+                                </section>
+                                <section id="period-three" class="level1">
+                                <h1>1-4 Hours (Even if not yet in PICU)</h1>
+                                <h3>(Timer to pop up: &quot60 minutes have passed. Reassess patient&quot)</h3>
+                                <p>Third Interval</p>
+                                <p>If blood pressure is not normalized, tachycardia is not resolved, or still needs inotropes; </p>
+                                <ol type="1">
+                                    <li><p>Consider need for more fluid boluses (up to 200 ml/kg).</p></li>
+                                    <li><p>Consider adjusting inotropes upwards or adding vasopressors (norepinephrine or vasopressin (link to norepinephrine and vasopressin protocols)).</p></li>
+                                    <li><p>May need blood transfusion. (Surviving Sepsis Guidelines suggest goal Hgb 10).</p></li>
+                                    <li><p>Consider pericardial effusion, pneumothorax, and increased intra-abdominal pressure. Treat if found. (link to protocols for treatment)</p></li>
+                                    <li><p>May require central line for access and/or monitoring CVP.</p></li>
+                                    <li><p>Consider repeat POC blood gas with lytes and glucose.</p></li>
+                                </ol>
+                        </section>
     </body>
 </html>

@@ -10,6 +10,13 @@
 #import "Guidelines.h"
 #import "GuidelineParentVC.h"
 
+#define UIColorFromHex(hexValue) \
+[UIColor \
+colorWithRed:((float)((hexValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((hexValue & 0x00FF00) >>  8))/255.0 \
+blue:((float)((hexValue & 0x0000FF) >>  0))/255.0 \
+alpha:1.0]
+
 @interface GuidelinesTVC ()
 
 @property NSArray *guidelines;
@@ -22,7 +29,7 @@
     NSLog(@"%%GuidelinesTVC-I-TRACE, -viewDidLoad: called.");
     
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor greenColor];
+    self.view.backgroundColor = UIColorFromHex(0x32A664);
     self.title = @"Guidelines";
     self.guidelines = [Guidelines knownGuidelines];
     

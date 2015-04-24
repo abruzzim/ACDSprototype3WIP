@@ -18,6 +18,13 @@
 #define CHILD3_WIDTH_FACTOR (1.0/3.0)
 #define CHILD3_HEIGHT_FACTOR (1.0/1.0)
 
+#define UIColorFromHex(hexValue) \
+[UIColor \
+colorWithRed:((float)((hexValue & 0xFF0000) >> 16))/255.0 \
+       green:((float)((hexValue & 0x00FF00) >>  8))/255.0 \
+        blue:((float)((hexValue & 0x0000FF) >>  0))/255.0 \
+       alpha:1.0]
+
 @interface GuidelineParentVC ()
 
 @property CGFloat statusBarFrameSizeHeight;
@@ -69,7 +76,7 @@
                    roundf((self.view.frame.size.width - _totalUnusableWidth) * CHILD1_WIDTH_FACTOR),
                    roundf((self.view.frame.size.height - _totalUnusableHeight) * CHILD1_HEIGHT_FACTOR)
                    );
-    self.flowchartVC.view.backgroundColor = [UIColor cyanColor];
+    self.flowchartVC.view.backgroundColor = UIColorFromHex(0x32A664);
     //
     // Instantiate and configure the scroll view.
     //
@@ -135,7 +142,7 @@
         [self showViewBoundsProperties:self.outlineVC.view];
     }
     
-    self.outlineVC.view.backgroundColor = [UIColor magentaColor];
+    self.outlineVC.view.backgroundColor = UIColorFromHex(0x32C8D9);
     //
     // Instantiate the web view and size to outline view.
     //
@@ -237,7 +244,9 @@
     }
     
     self.checklistVC.tasks = self.guidelineDict[@"checklist"];
-    self.checklistVC.view.backgroundColor = [UIColor clearColor];
+    self.checklistVC.view.backgroundColor = UIColorFromHex(0xF2B035);
+    self.checklistVC.tableView.layer.borderWidth = 1.0;
+    self.checklistVC.tableView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     [self.view addSubview:self.checklistVC.view];
     [self addChildViewController:self.checklistVC];
     self.isChecklistVisible = NO;
