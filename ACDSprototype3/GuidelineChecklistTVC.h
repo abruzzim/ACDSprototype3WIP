@@ -10,6 +10,6 @@
 
 @interface GuidelineChecklistTVC : UITableViewController
 
-@property (strong, nonatomic) NSMutableArray *tasks;
+- (instancetype)initWithDataDict:(NSDictionary *)checklistItems;
 
 @end

@@ -10,4 +10,11 @@
 
 @implementation GuidelineChecklistTask
 
+- (instancetype)initWithTitle:(NSString *)aTitle {
+    if (self = [super init]) {
+        self.title = aTitle;
+    }
+    return self;
+}
+
 @end

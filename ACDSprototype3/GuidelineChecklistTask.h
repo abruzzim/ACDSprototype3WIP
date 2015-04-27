@@ -13,4 +13,6 @@
 @property (strong, nonatomic) NSString *title;
 @property BOOL completed;
 
+- (instancetype)initWithTitle:(NSString *)aTitle;
+
 @end
